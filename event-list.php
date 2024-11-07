@@ -1,33 +1,25 @@
 <?php
-// Démarrer une session PHP pour accéder aux variables de session
 session_start();
 
-// Vérifier si l'utilisateur est connecté. Si non, le rediriger vers la page de connexion
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
 
-// Inclure le fichier de configuration pour la connexion à la base de données
 require_once "includes/config.php";
 
-// Préparer une requête SQL pour récupérer les événements depuis la base de données
-// Les événements sont triés par date de manière décroissante
 $sql = "SELECT id, title, description, event_date, location, is_public, image FROM events ORDER BY event_date DESC";
-$events = []; // Initialisation d'un tableau vide pour stocker les événements
+$events = [];
 
-// Exécuter la requête SQL et remplir le tableau $events avec les résultats
 if ($result = $pdo->query($sql)) {
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        $events[] = $row; // Ajouter chaque ligne de résultat dans le tableau $events
+        $events[] = $row;
     }
-    unset($result); // Libérer le résultat de la requête
+    unset($result);
 } else {
-    // Afficher un message d'erreur si la requête échoue
     echo "Oops! Quelque chose s'est mal passé. Veuillez réessayer plus tard.";
 }
 
-// Libérer l'objet PDO de la connexion à la base de données
 unset($pdo);
 ?>
 
@@ -36,7 +28,7 @@ unset($pdo);
 
 <head>
     <meta charset="UTF-8">
-    <title>Liste des Événements</title>
+    <title>Liste des événements</title>
     <link rel="stylesheet" href="css/root.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -45,7 +37,7 @@ unset($pdo);
 
 <body>
 
-    <?php include('includes/header.php'); ?> <!-- En-tête du site -->
+    <?php include('includes/header.php'); ?>
 
     <div class="container">
         <h2>FestiPlan</h2>
@@ -56,7 +48,7 @@ unset($pdo);
                         <div class="event-card">
                             <div class="top">
                                 <h3><?php echo htmlspecialchars($event["title"]); ?></h3>
-                                <div class="image-container"> <!-- Ajout d'un conteneur pour l'image -->
+                                <div class="image-container">
                                     <?php if (!empty($event["image"])) : ?>
                                         <img class="image-rect" src="data:image/jpeg;base64,<?php echo $event["image"]; ?>" alt="Image de l'événement">
                                     <?php else : ?>
@@ -77,7 +69,7 @@ unset($pdo);
         </div>
     </div>
 
-    <?php include('includes/footer.php'); ?> <!-- Pied de page du site -->
+    <?php include('includes/footer.php'); ?>
 
 </body>
 
