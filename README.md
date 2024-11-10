@@ -21,15 +21,9 @@ Bienvenue sur Party Planner, une application web pour ajouter et visualiser des 
 ### Prérequis
 
 - Serveur web avec support PHP (WAMP pour Windows, MAMP pour macOS, LAMP pour Linux)
-- MySQL 8
 
-Il est recommandé d'installer WAMP, MAMP ou LAMP, qui incluent à la fois un serveur web, PHP et MySQL, facilitant ainsi la mise en place de l'environnement nécessaire.
+Il est recommandé d'installer WAMP, MAMP ou LAMP, qui incluent à la fois un serveur web et PHP, facilitant ainsi la mise en place de l'environnement nécessaire.
 
-### Configuration de la base de données
-
-1. Importez la base de données depuis le fichier `party_planner_db.sql`.
-   - Accédez à phpMyAdmin.
-   - Importez le fichier SQL.
 
 ### Configuration du serveur
 
@@ -55,7 +49,3 @@ Il est recommandé d'installer WAMP, MAMP ou LAMP, qui incluent à la fois un se
 - `includes` : Fichiers PHP communs (`config.php`, `header.php`, `footer.php`).
 - `css` : Fichiers CSS.
 - `js` : Fichiers JavaScript.
-
-## Base de données
-
-Le fichier `party_planner_db.sql` contient la structure de la base de données avec des données initiales.
